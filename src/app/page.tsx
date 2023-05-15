@@ -93,6 +93,66 @@ export default function Home() {
           </div>
         </div>
       </div>
+
+      <div className="px-32 -translate-y-[80px]">
+        <div className="grid grid-cols-4 shadow-lg p-10 rounded-md bg-white border gap-12">
+          <div className="flex gap-4 items-center">
+            <Image
+              src="/icon/icMap.svg"
+              alt="Destination"
+              width={40}
+              height={40}
+            />
+            <p className="font-bold text-2xl text-zinc-900">Destination</p>
+          </div>
+
+          <div className="flex gap-4 items-center">
+            <Image
+              src="/icon/icCalendar.svg"
+              alt="Date"
+              width={40}
+              height={40}
+            />
+            <p className="font-bold text-2xl text-zinc-900">Date</p>
+          </div>
+
+          <div className="flex gap-4 items-center">
+            <Image
+              src="/icon/icGroup.svg"
+              alt="People"
+              width={40}
+              height={40}
+            />
+            <p className="font-bold text-2xl text-zinc-900">People</p>
+          </div>
+
+          <div></div>
+
+          <input
+            type="text"
+            placeholder="Where are you going?"
+            className="p-4 bg-zinc-100 -mt-6 rounded-md w-full"
+          />
+
+          <input
+            type="date"
+            placeholder="when will you start?"
+            className="p-4 bg-zinc-100 -mt-6 rounded-md w-full"
+          />
+
+          <input
+            type="number"
+            placeholder="How many people?"
+            className="p-4 bg-zinc-100 -mt-6 rounded-md w-full"
+          />
+
+          <div className="-mt-6">
+            <Button variant="primary" className="h-full w-full flex items-center justify-center text-center">
+              Search Now
+            </Button>
+          </div>
+        </div>
+      </div>
     </main>
   )
 }
