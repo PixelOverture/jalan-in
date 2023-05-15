@@ -94,6 +94,7 @@ export default function Home() {
         </div>
       </div>
 
+      {/* Search bar */}
       <div className="px-32 -translate-y-[80px]">
         <div className="grid grid-cols-4 shadow-lg p-10 rounded-md bg-white border gap-12">
           <div className="flex gap-4 items-center">
@@ -147,7 +148,10 @@ export default function Home() {
           />
 
           <div className="-mt-6">
-            <Button variant="primary" className="h-full w-full flex items-center justify-center text-center">
+            <Button
+              variant="primary"
+              className="h-full w-full flex items-center justify-center text-center"
+            >
               Search Now
             </Button>
           </div>
