@@ -213,7 +213,7 @@ export default function Home() {
         <p className="text-6xl font-medium text-center">
           Popular destinations for you
         </p>
-        <p className="text-lg font-medium mt-6 text-center">
+        <p className="text-lg font-medium mt-6 text-center text-zinc-500">
           Take a look at popular destination recommendations just for you
         </p>
 
@@ -270,7 +270,132 @@ export default function Home() {
         ))}
       </div>
 
-      {/* Why */}
+      {/* Services */}
+      <div className="mt-40">
+        <p className="text-6xl font-medium text-center">Why choose us?</p>
+        <p className="text-lg font-medium mt-6 text-center text-zinc-500">
+          Why choose us? We have all your travel needs covered and offer the
+          best service.
+        </p>
+      </div>
+      <div className="mt-12 grid grid-cols-3 px-32 gap-5 justify-center">
+        <div className="flex flex-col justify-center items-center">
+          <Image
+            src="/service1.jpg"
+            alt="Our service"
+            width={411}
+            height={296}
+          />
+
+          <div className="px-5 -translate-y-16">
+            <div className="bg-white p-8 rounded-md border shadow-md min-h-[200px]">
+              <div className="flex items-center gap-4 h-10">
+                <Image
+                  src="/icon/ic1.svg"
+                  alt="Service"
+                  width={40}
+                  height={40}
+                />
+                <p className="font-bold text-xl text-zinc-800">Affordable</p>
+              </div>
+
+              <p className="text-zinc-600 mt-4 text-lg">
+                We provide affordable service to various tourist destinations.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div className="flex flex-col justify-center items-center">
+          <Image
+            src="/service2.jpg"
+            alt="Our service"
+            width={411}
+            height={296}
+          />
+
+          <div className="px-5 -translate-y-16">
+            <div className="bg-white p-8 rounded-md border shadow-md min-h-[200px]">
+              <div className="flex items-center gap-4 h-10">
+                <Image
+                  src="/icon/ic2.svg"
+                  alt="Service"
+                  width={40}
+                  height={40}
+                />
+                <p className="font-bold text-xl text-zinc-800">Partner</p>
+              </div>
+
+              <p className="text-zinc-600 mt-4 text-lg">
+                We have more than 800 partners worldwide.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div className="flex flex-col justify-center items-center">
+          <Image
+            src="/service3.jpg"
+            alt="Our service"
+            width={411}
+            height={296}
+          />
+
+          <div className="px-5 -translate-y-16">
+            <div className="bg-white p-8 rounded-md border shadow-md min-h-[200px]">
+              <div className="flex items-center gap-4 h-10">
+                <Image
+                  src="/icon/ic3.svg"
+                  alt="Service"
+                  width={40}
+                  height={40}
+                />
+                <p className="font-bold text-xl text-zinc-800">
+                  World is in your hands
+                </p>
+              </div>
+
+              <p className="text-zinc-600 mt-4 text-lg">
+                We have all tourist destinations in the world.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* How we can help */}
+      <div className="mt-40">
+        <p className="text-6xl font-medium text-center">
+          How we can help your journey?
+        </p>
+        <p className="text-lg font-medium mt-6 text-center text-zinc-500">
+          We connect you with your destination in an easy way.
+        </p>
+      </div>
+
+      <div className="grid grid-cols-3 px-32 mt-16 gap-24">
+        <div className="flex flex-col items-center gap-6 justify-center text-center">
+          <Image src="/icMap.svg" alt="Our help" width={60} height={60} />
+          <p className="font-bold text-xl">Find your destination</p>
+          <p className="text-zinc-500 text-lg">
+            Find your favorite tourist destinations quickly and easily
+          </p>
+        </div>
+        <div className="flex flex-col items-center gap-6 justify-center text-center">
+          <Image src="/icTicket.svg" alt="Our help" width={60} height={60} />
+          <p className="font-bold text-xl">Find your destination</p>
+          <p className="text-zinc-500 text-lg">
+            Find your favorite tourist destinations quickly and easily
+          </p>
+        </div>
+        <div className="flex flex-col items-center gap-6 justify-center text-center">
+          <Image src="/icSmile.svg" alt="Our help" width={60} height={60} />
+          <p className="font-bold text-xl">Find your destination</p>
+          <p className="text-zinc-500 text-lg">
+            Find your favorite tourist destinations quickly and easily
+          </p>
+        </div>
+      </div>
+
       <div className="mt-40"></div>
     </main>
   )
