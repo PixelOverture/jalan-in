@@ -1,8 +1,58 @@
+'use client'
 import Button from '@/components/Button'
 import Image from 'next/image'
 import Link from 'next/link'
+import React from 'react'
+
+const destinations = [
+  { id: 1, imgUrl: '/destination1.jpg', desc: 'Huairou District, China' },
+  { id: 2, imgUrl: '/destination2.jpg', desc: 'Sydney, Australia' },
+  { id: 3, imgUrl: '/destination3.jpg', desc: 'Bali, Indonesia' },
+  { id: 4, imgUrl: '/destination4.jpg', desc: 'Manila, Thailand' },
+  { id: 5, imgUrl: '/destination5.jpg', desc: 'Amsterdam, Netherland' },
+  { id: 6, imgUrl: '/destination6.jpg', desc: 'London, UK' },
+  { id: 7, imgUrl: '/destination7.jpg', desc: 'Lombok, Indonesia' },
+]
 
 export default function Home() {
+  const [destination, setDestination] = React.useState(
+    Math.round(destinations.length / 2)
+  )
+  const scrollContainerRef = React.useRef(null)
+
+  const scrollToDestination = () => {
+    const containerElement: any = scrollContainerRef.current
+    const imageElement = document.getElementById(`destination-${destination}`)
+
+    if (containerElement && imageElement) {
+      const containerWidth = containerElement.offsetWidth
+      const imageWidth = imageElement.offsetWidth
+      const scrollOffset =
+        imageElement.offsetLeft - (containerWidth - imageWidth) / 2
+
+      containerElement.scrollTo({
+        left: scrollOffset,
+        behavior: 'smooth',
+      })
+    }
+  }
+
+  const handleNextClick = () => {
+    setDestination((prev) => (prev >= destinations.length ? prev : prev + 1))
+
+    scrollToDestination()
+  }
+
+  const handlePrevClick = () => {
+    setDestination((prev) => (prev <= 1 ? prev : prev - 1))
+    scrollToDestination()
+  }
+
+  React.useEffect(() => {
+    scrollToDestination()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
+
   return (
     <main className="flex min-h-screen flex-col">
       <div className="bg-secondary text-white px-32 pb-[240px]">
@@ -95,7 +145,7 @@ export default function Home() {
       </div>
 
       {/* Search bar */}
-      <div className="px-32 -translate-y-[80px]">
+      <div className="px-32 -mt-20">
         <div className="grid grid-cols-4 shadow-lg p-10 rounded-md bg-white border gap-12">
           <div className="flex gap-4 items-center">
             <Image
@@ -157,6 +207,71 @@ export default function Home() {
           </div>
         </div>
       </div>
+
+      {/* Popular Destination */}
+      <div className="px-32 text-zinc-900 mt-40">
+        <p className="text-6xl font-medium text-center">
+          Popular destinations for you
+        </p>
+        <p className="text-lg font-medium mt-6 text-center">
+          Take a look at popular destination recommendations just for you
+        </p>
+
+        <div className="flex justify-between">
+          <button className="hover:bg-zinc-100" onClick={handlePrevClick}>
+            <Image
+              src="/icon/icArrow.svg"
+              alt="Previous"
+              width={60}
+              height={60}
+            />
+          </button>
+
+          <button className="hover:bg-zinc-100" onClick={handleNextClick}>
+            <Image
+              src="/icon/icArrow.svg"
+              alt="Previous"
+              width={60}
+              height={60}
+              className="rotate-180"
+            />
+          </button>
+        </div>
+      </div>
+
+      <div
+        className="px-32 flex gap-8 mt-4 items-center overflow-x-hidden"
+        ref={scrollContainerRef}
+      >
+        {destinations.map(({ id, imgUrl, desc }) => (
+          <div
+            key={id}
+            className="min-w-fit rounded-md h-full flex flex-col items-center justify-center"
+            id={`destination-${id}`}
+          >
+            <Image
+              src={imgUrl}
+              alt="Popular destination"
+              width={244}
+              height={352}
+              className={`object-center object-cover rounded-md w-full ${
+                destination === id
+                  ? 'h-[410px] w-[284px]'
+                  : 'opacity-70 h-[352px] w-[244px] mb-12'
+              }`}
+            />
+
+            {destination === id && (
+              <p className="font-bold text-xl mt-4 text-center text-zinc-700">
+                {desc}
+              </p>
+            )}
+          </div>
+        ))}
+      </div>
+
+      {/* Why */}
+      <div className="mt-40"></div>
     </main>
   )
 }
