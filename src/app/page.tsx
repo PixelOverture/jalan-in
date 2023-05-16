@@ -373,25 +373,27 @@ export default function Home() {
       </div>
 
       <div className="grid grid-cols-3 px-32 mt-16 gap-24">
-        <div className="flex flex-col items-center gap-6 justify-center text-center">
+        <div className="flex flex-col items-center gap-6 text-center">
           <Image src="/icMap.svg" alt="Our help" width={60} height={60} />
           <p className="font-bold text-xl">Find your destination</p>
           <p className="text-zinc-500 text-lg">
             Find your favorite tourist destinations quickly and easily
           </p>
         </div>
-        <div className="flex flex-col items-center gap-6 justify-center text-center">
+
+        <div className="flex flex-col items-center gap-6 text-center">
           <Image src="/icTicket.svg" alt="Our help" width={60} height={60} />
-          <p className="font-bold text-xl">Find your destination</p>
+          <p className="font-bold text-xl">Book a ticket and pay</p>
           <p className="text-zinc-500 text-lg">
-            Find your favorite tourist destinations quickly and easily
+            After finding the right destination, book your ticket immediately
           </p>
         </div>
-        <div className="flex flex-col items-center gap-6 justify-center text-center">
+
+        <div className="flex flex-col items-center gap-6 text-center">
           <Image src="/icSmile.svg" alt="Our help" width={60} height={60} />
           <p className="font-bold text-xl">Find your destination</p>
           <p className="text-zinc-500 text-lg">
-            Find your favorite tourist destinations quickly and easily
+            After everything is done, it&apos;s time to enjoy your trip.
           </p>
         </div>
       </div>
