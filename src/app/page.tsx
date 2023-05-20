@@ -14,11 +14,52 @@ const destinations = [
   { id: 7, imgUrl: '/destination7.jpg', desc: 'Lombok, Indonesia' },
 ]
 
+const testimonials = [
+  {
+    id: 1,
+    profileImg: '/person1.png',
+    name: 'Jack Sam',
+    comment:
+      'What a great service! I feel very satisfied to be able to travel around the world using JalanIN. Good work! keep up your good service.',
+  },
+  {
+    id: 2,
+    profileImg: '/person2.png',
+    name: 'Andryana',
+    comment:
+      "JanIN is very easy to use, the website is very friendly. I've never come across anything like this before.",
+  },
+  {
+    id: 3,
+    profileImg: '/person3.png',
+    name: 'Tasya Ranin',
+    comment:
+      "I heard from a friend that this product is amazing, it's true! I'm very satisfied with the service. The customer service is also very helpful. I really like!",
+  },
+  {
+    id: 4,
+    profileImg: '/person4.png',
+    name: 'Jack Sam',
+    comment:
+      'What a great service! I feel very satisfied to be able to travel around the world using JalanIN. Good work! keep up your good service.',
+  },
+  {
+    id: 5,
+    profileImg: '/person5.png',
+    name: 'Bryan',
+    comment:
+      'Exceptional service, satisfied customers, easy to use. Keep up the great work, JalanIN!',
+  },
+]
+
 export default function Home() {
   const [destination, setDestination] = React.useState(
     Math.round(destinations.length / 2)
   )
+  const [testimonial, setTestimonial] = React.useState(3)
+
   const scrollContainerRef = React.useRef(null)
+  const scrollTestimonialRef = React.useRef(null)
 
   const scrollToDestination = () => {
     const containerElement: any = scrollContainerRef.current
@@ -26,9 +67,28 @@ export default function Home() {
 
     if (containerElement && imageElement) {
       const containerWidth = containerElement.offsetWidth
-      const imageWidth = imageElement.offsetWidth
+      const activeElementWidth = imageElement.offsetWidth
+      const activeElementOffset = imageElement.offsetLeft
       const scrollOffset =
-        imageElement.offsetLeft - (containerWidth - imageWidth) / 2
+        activeElementOffset - (containerWidth - activeElementWidth) / 2
+
+      containerElement.scrollTo({
+        left: scrollOffset,
+        behavior: 'smooth',
+      })
+    }
+  }
+
+  const scrollToTestimonial = () => {
+    const containerElement: any = scrollTestimonialRef.current
+    const imageElement = document.getElementById(`testimonial-${testimonial}`)
+
+    if (containerElement && imageElement) {
+      const containerWidth = containerElement.offsetWidth
+      const activeElementWidth = imageElement.offsetWidth
+      const activeElementOffset = imageElement.offsetLeft
+      const scrollOffset =
+        activeElementOffset - (containerWidth - activeElementWidth) / 2
 
       containerElement.scrollTo({
         left: scrollOffset,
@@ -39,7 +99,6 @@ export default function Home() {
 
   const handleNextClick = () => {
     setDestination((prev) => (prev >= destinations.length ? prev : prev + 1))
-
     scrollToDestination()
   }
 
@@ -48,8 +107,19 @@ export default function Home() {
     scrollToDestination()
   }
 
+  const handleNextTestimonial = () => {
+    setTestimonial((prev) => (prev >= testimonials.length ? prev : prev + 1))
+    scrollToTestimonial()
+  }
+
+  const handlePrevTestimonial = () => {
+    setTestimonial((prev) => (prev <= 1 ? prev : prev - 1))
+    scrollToTestimonial()
+  }
+
   React.useEffect(() => {
     scrollToDestination()
+    scrollToTestimonial()
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
@@ -208,7 +278,7 @@ export default function Home() {
         </div>
       </div>
 
-      {/* Popular Destination */}
+      {/* Popular destination */}
       <div className="px-32 text-zinc-900 mt-40">
         <p className="text-6xl font-medium text-center">
           Popular destinations for you
@@ -270,7 +340,7 @@ export default function Home() {
         ))}
       </div>
 
-      {/* Services */}
+      {/* Why choose us? */}
       <div className="mt-40">
         <p className="text-6xl font-medium text-center">Why choose us?</p>
         <p className="text-lg font-medium mt-6 text-center text-zinc-500">
@@ -278,6 +348,7 @@ export default function Home() {
           best service.
         </p>
       </div>
+
       <div className="mt-12 grid grid-cols-3 px-32 gap-5 justify-center">
         <div className="flex flex-col justify-center items-center">
           <Image
@@ -285,9 +356,10 @@ export default function Home() {
             alt="Our service"
             width={411}
             height={296}
+            className="w-full"
           />
 
-          <div className="px-5 -translate-y-16">
+          <div className="w-full px-5 -translate-y-16">
             <div className="bg-white p-8 rounded-md border shadow-md min-h-[200px]">
               <div className="flex items-center gap-4 h-10">
                 <Image
@@ -312,9 +384,10 @@ export default function Home() {
             alt="Our service"
             width={411}
             height={296}
+            className="w-full"
           />
 
-          <div className="px-5 -translate-y-16">
+          <div className="w-full px-5 -translate-y-16">
             <div className="bg-white p-8 rounded-md border shadow-md min-h-[200px]">
               <div className="flex items-center gap-4 h-10">
                 <Image
@@ -338,9 +411,10 @@ export default function Home() {
             alt="Our service"
             width={411}
             height={296}
+            className="w-full"
           />
 
-          <div className="px-5 -translate-y-16">
+          <div className="w-full px-5 -translate-y-16">
             <div className="bg-white p-8 rounded-md border shadow-md min-h-[200px]">
               <div className="flex items-center gap-4 h-10">
                 <Image
@@ -362,7 +436,7 @@ export default function Home() {
         </div>
       </div>
 
-      {/* How we can help */}
+      {/* How we can help your journey? */}
       <div className="mt-40">
         <p className="text-6xl font-medium text-center">
           How we can help your journey?
@@ -398,7 +472,144 @@ export default function Home() {
         </div>
       </div>
 
-      <div className="mt-40"></div>
+      {/* Testimonial */}
+      <div className="mt-40 bg-secondary text-zinc-100 py-20">
+        <div className="px-32">
+          <div className="max-w-lg">
+            <p className="text-6xl leading-tight">
+              Customers says about our service
+            </p>
+            <p className="mt-6 leading-relaxed">
+              If you are still unsure about us, let&apos;s see the testimonials
+              from customers who have used our services.
+            </p>
+          </div>
+        </div>
+
+        <div>
+          <div className="flex gap-6 justify-end px-32 -translate-y-40">
+            <button onClick={handlePrevTestimonial}>
+              <Image
+                src="/icon/icArrow.svg"
+                alt="Previous"
+                width={60}
+                height={60}
+              />
+            </button>
+
+            <button onClick={handleNextTestimonial}>
+              <Image
+                src="/icon/icArrow.svg"
+                alt="Previous"
+                width={60}
+                height={60}
+                className="rotate-180"
+              />
+            </button>
+          </div>
+
+          <div
+            className="flex overflow-hidden gap-7 pt-24 px-32 -translate-y-8"
+            ref={scrollTestimonialRef}
+          >
+            {testimonials.map(({ id, profileImg, name, comment }) => (
+              <div
+                key={id}
+                id={`testimonial-${id}`}
+                className={`min-w-[370px] max-w-[370px] bg-[#385F5D] rounded-md p-6 flex flex-col gap-6 ${
+                  testimonial === id ? '-translate-y-24' : ''
+                }`}
+              >
+                <div className="flex gap-4 items-center">
+                  <Image
+                    src={profileImg}
+                    alt={`${name} picture`}
+                    width={46}
+                    height={46}
+                  />
+                  <p className="font-bold text-lg">{name}</p>
+                </div>
+
+                <p className="text-lg">{comment}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      {/* Want to start  */}
+      <div className="mt-40 flex flex-col gap-6 text-center items-center">
+        <p className="text-6xl">Want to start the trip now?</p>
+        <p className="text-lg text-zinc-500">
+          Don&apos;t hesitate, don&apos;t be confused either. A long journey
+          awaits you ahead! let&apos;s click
+        </p>
+        <Button variant="primary">Lets Start!</Button>
+      </div>
+
+      {/* Footer */}
+      <div className="mt-40 grid grid-cols-6 text-lg bg-secondary text-zinc-50 px-32 py-24 gap-24">
+        <div className="col-span-2">
+          <Link href="/" className="font-bold text-4xl">
+            Jalan<span className="text-primary">IN</span>
+          </Link>
+          <p className="mt-6">
+            The best traveling platform that will take you around the world.
+          </p>
+        </div>
+
+        <div className="flex flex-col gap-4">
+          <p className="text-xl font-bold">Resource</p>
+          <Link href="#" className="text-lg w-fit hover:text-zinc-200">
+            Download
+          </Link>
+          <Link href="#" className="text-lg w-fit hover:text-zinc-200">
+            Help Center
+          </Link>
+          <Link href="#" className="text-lg w-fit hover:text-zinc-200">
+            Guide Book
+          </Link>
+          <Link href="#" className="text-lg w-fit hover:text-zinc-200">
+            Location Map
+          </Link>
+        </div>
+
+        <div className="flex flex-col gap-4">
+          <p className="text-xl font-bold">Company</p>
+          <Link href="#" className="text-lg w-fit hover:text-zinc-200">
+            About Us
+          </Link>
+          <Link href="#" className="text-lg w-fit hover:text-zinc-200">
+            Contact
+          </Link>
+          <Link href="#" className="text-lg w-fit hover:text-zinc-200">
+            Partner
+          </Link>
+        </div>
+
+        <div className="flex flex-col gap-4">
+          <p className="text-xl font-bold">Travellers</p>
+          <Link href="#" className="text-lg w-fit hover:text-zinc-200">
+            Destination
+          </Link>
+          <Link href="#" className="text-lg w-fit hover:text-zinc-200">
+            Travellers Stories
+          </Link>
+          <Link href="#" className="text-lg w-fit hover:text-zinc-200">
+            Packet
+          </Link>
+        </div>
+
+        <div className="flex flex-col gap-4">
+          <p className="text-xl font-bold">Get App</p>
+          <Link href="#" className="text-lg w-fit hover:text-zinc-200">
+            App Store
+          </Link>
+          <Link href="#" className="text-lg w-fit hover:text-zinc-200">
+            Google Play Store
+          </Link>
+        </div>
+      </div>
     </main>
   )
 }
